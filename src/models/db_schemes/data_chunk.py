@@ -8,12 +8,11 @@ class DataChunk(BaseModel):
     chunk_metadata: dict
     chunk_order: int = Field(..., gt=0)
     chunk_project_id: ObjectId
+    chunk_asset_id: ObjectId
 
     class Config:
         arbitrary_types_allowed = True
-    
 
-    
     @classmethod
     def get_indexes(cls):
         return [
@@ -25,3 +24,7 @@ class DataChunk(BaseModel):
                 "unique": False
             }
         ]
+    
+class RetrievedDocument(BaseModel):
+    text: str
+    score: float
